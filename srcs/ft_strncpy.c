@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 10:46:53 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/07 10:53:28 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/09 18:37:24 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 		dst[i] = src[i];
 		i++;
 	}
-	while (i <= len)
+	while (i < len)
 	{
 		dst[i] = '\0';
+		i++;
 	}
 	return (dst);
 }

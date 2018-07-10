@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:35:03 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/07 14:52:03 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/09 19:02:58 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 static char		*ft_checker(const char *needle, const char *haystack)
 {
-	char *check;
+	int i;
 
-	check = haystack;
-	while (*needle)
+	i = 0;
+	while (needle[i])
 	{
-		if (*needle != *haystack)
+		if (needle[i] != haystack[i])
 			return (NULL);
-		needle++;
-		haystack++;
+		i++;
 	}
-	return (check);
+	return ((char *)haystack);
 }
 
 char			*ft_strstr(const char *haystack, const char *needle)
@@ -33,7 +32,7 @@ char			*ft_strstr(const char *haystack, const char *needle)
 
 	check = NULL;
 	if (ft_strlen(needle) == 0)
-		return (haystack);
+		return ((char *)haystack);
 	while (*haystack)
 	{
 		if (*needle == *haystack)

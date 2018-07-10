@@ -20,7 +20,7 @@ static int		ft_itoa_size(int *n, int *negative)
 	size = 1;
 	if (*n < 0)
 	{
-		*n = n * -1;
+		*n *= -1;
 		*negative = 1;
 		size++;
 	}
@@ -30,6 +30,7 @@ static int		ft_itoa_size(int *n, int *negative)
 		cpy /= 10;
 		size++;
 	}
+	return (size);
 }
 
 char			*ft_itoa(int n)
