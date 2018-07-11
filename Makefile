@@ -33,7 +33,6 @@ FILES		=  ft_bzero.c \
 				ft_putstr.c \
 				ft_strcat.c \
 				ft_strcmp.c \
-				ft_strcmp.c \
 				ft_strdel.c \
 				ft_strequ.c \
 				ft_striter.c \
