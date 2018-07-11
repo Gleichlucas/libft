@@ -6,13 +6,13 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:35:03 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/10 19:47:26 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/11 16:01:22 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_checker(const char *needle, const char *haystack, size_t len)
+static char	*ft_checker(const char *needle, const char *haystack, size_t len)
 {
 	size_t i;
 
@@ -28,17 +28,14 @@ static char		*ft_checker(const char *needle, const char *haystack, size_t len)
 	return ((char *)haystack);
 }
 
-char			*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char *check;
-	size_t needle_len;
+	char	*check;
+	size_t	needle_len;
 
 	check = NULL;
-	
 	if ((needle_len = ft_strlen(needle)) == 0)
 		return ((char *)haystack);
-
-	
 	while (*haystack && len >= needle_len)
 	{
 		if (*needle == *haystack)

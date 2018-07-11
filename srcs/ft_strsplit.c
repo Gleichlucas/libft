@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 18:20:15 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/10 20:58:24 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/11 15:49:46 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static int		ft_wordcounter(char const *s, char c)
 
 static	char	*ft_wordcutter(char const *s, char c)
 {
-	char *word;
-	size_t i;
-	unsigned int start;
-	int u;
+	char			*word;
+	size_t			i;
+	unsigned int	start;
+	int				u;
 
 	u = 0;
 	i = 0;
@@ -57,9 +57,7 @@ static	char	*ft_wordcutter(char const *s, char c)
 			}
 		}
 		else
-		{
 			start++;
-		}
 		u++;
 	}
 	return (NULL);
@@ -82,10 +80,7 @@ char			**ft_strsplit(char const *s, char c)
 	{
 		wordl = ft_strlen(ft_wordcutter(s, c));
 		if (ft_wordcutter(s, c) && (*(arr + i) = (char *)malloc(wordl)))
-		{
-			arr[i] = ft_wordcutter(s, c);
-			i++;
-		}
+			arr[i++] = ft_wordcutter(s, c);
 		while (*s == c && *s)
 			s++;
 		while (*s != c && *s)

@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 15:58:02 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/10 15:04:12 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/11 15:56:48 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ char	*ft_strtrim(char const *s)
 	while (s1[len] == ' ' || s1[len] == '\n' || s1[len] == '\t')
 		len--;
 	len++;
-	s1 = ft_strsub(s, i, len -(size_t)i);
+	s1 = ft_strsub(s, i, len - (size_t)i);
 	return (s1);
 }

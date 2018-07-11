@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:07:12 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/09 18:30:12 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/11 15:56:10 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 	while (i < n)
 	{
 		if (str1[i] != str2[i])
-			return (str1[i]-str2[i]);
+			return (str1[i] - str2[i]);
 		i++;
 	}
 	return (0);

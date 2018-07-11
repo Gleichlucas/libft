@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/07 09:46:16 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/11 15:42:13 by lkunz            ###   ########.fr       */
+/*   Created: 2018/07/11 09:42:05 by lkunz             #+#    #+#             */
+/*   Updated: 2018/07/11 10:29:41 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	size_t		i;
-	char		*csrc;
-	char		*cdst;
-	int			lenc;
+	t_list *head;
 
-	lenc = (int)len;
-	i = 0;
-	csrc = (char *)src;
-	cdst = (char *)dst;
-	if (cdst < csrc)
+	if (!(head = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	if (!content)
 	{
-		while (i < len)
-		{
-			*(cdst + i) = *(csrc + i);
-			i++;
-		}
+		head->content = NULL;
+		head->content_size = 0;
 	}
 	else
 	{
-		while (--lenc >= 0)
-			*(cdst + lenc) = *(csrc + lenc);
+		head->content = malloc(content_size);
+		ft_memmove(head->content, content, content_size);
+		head->content_size = content_size;
 	}
-	return (dst);
+	head->next = NULL;
+	return (head);
 }

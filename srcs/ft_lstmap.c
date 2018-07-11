@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/07 09:46:16 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/11 15:42:13 by lkunz            ###   ########.fr       */
+/*   Created: 2018/07/11 13:24:18 by lkunz             #+#    #+#             */
+/*   Updated: 2018/07/11 14:17:26 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	size_t		i;
-	char		*csrc;
-	char		*cdst;
-	int			lenc;
+	t_list		*new;
+	t_list		*list;
 
-	lenc = (int)len;
-	i = 0;
-	csrc = (char *)src;
-	cdst = (char *)dst;
-	if (cdst < csrc)
+	if (!lst || !f)
+		return (NULL);
+	list = f(lst);
+	new = list;
+	while (lst->next)
 	{
-		while (i < len)
+		lst = lst->next;
+		if (!(list->next = f(lst)))
 		{
-			*(cdst + i) = *(csrc + i);
-			i++;
+			free(list->next);
+			return (NULL);
 		}
+		list = list->next;
 	}
-	else
-	{
-		while (--lenc >= 0)
-			*(cdst + lenc) = *(csrc + lenc);
-	}
-	return (dst);
+	return (new);
 }

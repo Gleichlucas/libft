@@ -1,10 +1,14 @@
-NAME		= libft.a
+NAME = libft.a
 
-SRC_DIR		= srcs/
-INC_DIR		= includes/
+CC = /usr/bin/gcc
+AR = /usr/bin/ar
+CFLAGS = -Wall -Wextra -Werror -I includes
 
-CFLAGS		= -Wall -Werror -Wextra
-FILES		=  ft_bzero.c \
+GREEN=\033[0;32m
+BLUE=\033[0;34m
+RED=\033[0;31m
+
+FILENAMES	+=	ft_bzero.c \
 				ft_atoi.c \
 				ft_isalpha.c \
 				ft_isalnum.c \
@@ -55,30 +59,37 @@ FILES		=  ft_bzero.c \
 				ft_strmapi.c \
 				ft_strlcat.c \
 				ft_strclr.c \
-				ft_strrchr.c
+				ft_strrchr.c \
+				ft_lstnew.c \
+				ft_lstdelone.c \
+				ft_lstdel.c \
+				ft_lstadd.c \
+				ft_lstiter.c \
+				ft_lstmap.c 
 
+SOURCES		=	$(addprefix srcs/, $(FILENAMES))
+OBJECTS		=	$(addprefix build/, $(FILENAMES:.c=.o))
 
-
-
-
-			  
-			  
-
-SRCS		= $(patsubst %,$(SRC_DIR)%,$(FILES))
-OBJ			= $(FILES:%.c=%.o)
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
-
-$(OBJ): $(SRCS)
-	gcc -c -I$(INC_DIR) $(CFLAGS) $(SRCS)
-
 clean:
-	rm -f $(OBJ)
+	@rm -rf build
+	@echo "$(BLUE) ✓ Removed .o files"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(RED) ✓ Removed libft.a"
 
 re: fclean all
+
+$(NAME): $(OBJECTS)
+	@$(AR) crs $@ $(OBJECTS)
+	@echo "$(GREEN) ✓ Created libft.a"
+
+build:
+	@mkdir build/
+
+build/%.o: srcs/%.c | build
+	$(CC) $(CFLAGS) -c $< -o $@
