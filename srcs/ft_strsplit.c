@@ -6,11 +6,12 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 18:20:15 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/08 10:27:17 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/10 16:57:13 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int		ft_wordcounter(char const *s, char c)
 {
@@ -36,26 +37,30 @@ static int		ft_wordcounter(char const *s, char c)
 
 static	char	*ft_wordcutter(char const *s, char c)
 {
-	char flag;
 	char *word;
+	size_t i;
+	unsigned int start;
+	int u;
 
-	flag = 0;
-	while (*s)
+	u = 0;
+	i = 0;
+	start = 0;
+	while (s[u])
 	{
-		if (*s != c)
+		if (s[u] != c)
 		{
-			if (!flag)
-				word = (char *)s;
-			flag = 1;
-			*word = *s;
-			word++;
+			i++;
+			if (s[u + 1] == '\0' || s[u + 1] == c)
+			{
+				word = ft_strsub(s, start, i);
+				return (word);
+			}
 		}
-		if (*(s + 1) == '\0' || *(s + 1) == c)
+		else
 		{
-			*word = '\0';
-			return (word);
+			start++;
 		}
-		s++;
+		u++;
 	}
 	return (NULL);
 }
@@ -71,16 +76,36 @@ char			**ft_strsplit(char const *s, char c)
 	wordc = ft_wordcounter(s, c);
 	if (!(arr = (char **)malloc(sizeof(char *) * wordc + 1)))
 		return (NULL);
-	while (*s)
+	while (wordc > 0)
 	{
 		wordl = ft_strlen(ft_wordcutter(s, c));
-		if (ft_wordcutter(s, c) && !(*(arr + i) = (char *)malloc(wordl)))
-			*(arr + i) = ft_wordcutter(s, c);
-		i++;
-		while (*s == c)
+		if (ft_wordcutter(s, c) && (*(arr + i) = (char *)malloc(wordl)))
+		{
+			arr[i] = ft_wordcutter(s, c);
+			i++;
+		}
+		while (*s == c && *s)
 			s++;
-		s += wordl;
+		while (*s != c && *s)
+			s++;
+		wordc--;
 	}
 	*(arr + i) = NULL;
 	return (arr);
 }
+
+/*
+int main(void)
+{
+	char **tab;
+	tab = ft_strsplit("*hello*fellow***students*", '*');
+	//char *word = ft_wordcutter("    Te  st     ", ' ');
+	int i = 0;
+	while (i < 3)
+	{
+	printf("tab is %s\n", tab[i]);
+	i++;
+	}
+	return 42;
+}
+*/
