@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 18:20:15 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/10 16:57:13 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/10 20:58:24 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ char			**ft_strsplit(char const *s, char c)
 	size_t	i;
 
 	i = 0;
+	if (s == NULL)
+		return (NULL);
 	wordc = ft_wordcounter(s, c);
 	if (!(arr = (char **)malloc(sizeof(char *) * wordc + 1)))
 		return (NULL);
@@ -93,19 +95,3 @@ char			**ft_strsplit(char const *s, char c)
 	*(arr + i) = NULL;
 	return (arr);
 }
-
-/*
-int main(void)
-{
-	char **tab;
-	tab = ft_strsplit("*hello*fellow***students*", '*');
-	//char *word = ft_wordcutter("    Te  st     ", ' ');
-	int i = 0;
-	while (i < 3)
-	{
-	printf("tab is %s\n", tab[i]);
-	i++;
-	}
-	return 42;
-}
-*/

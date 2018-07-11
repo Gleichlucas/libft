@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 15:58:02 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/07 17:01:06 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/10 15:04:12 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 
 char	*ft_strtrim(char const *s)
 {
-	size_t			i;
+	unsigned int	i;
 	size_t			len;
-	unsigned int	start;
+	char			*s1;
 
 	i = 0;
+	if (!s)
+		return (NULL);
+	if (!s[i])
+		return ((char *)s);
 	len = ft_strlen(s);
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+	s1 = (char *)s;
+	while (s1[i] == ' ' || s1[i] == '\n' || s1[i] == '\t')
 		i++;
-	start = (unsigned int)i;
+	if (i == (unsigned int)len)
+		return (ft_strnew(0));
 	len--;
-	while (s[len] == ' ' || s[len] == '\n' || s[len] == '\t')
+	while (s1[len] == ' ' || s1[len] == '\n' || s1[len] == '\t')
 		len--;
-	len -= i;
-	return (ft_strsub(s, start, len));
+	len++;
+	s1 = ft_strsub(s, i, len -(size_t)i);
+	return (s1);
 }

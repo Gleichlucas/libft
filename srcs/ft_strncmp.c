@@ -6,7 +6,7 @@
 /*   By: lkunz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 14:57:21 by lkunz             #+#    #+#             */
-/*   Updated: 2018/07/09 14:01:40 by lkunz            ###   ########.fr       */
+/*   Updated: 2018/07/09 19:22:16 by lkunz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n)
 			return (*str1 - *str2);
 		str1++;
 		str2++;
+		i++;
 	}
 	return (0);
 }
